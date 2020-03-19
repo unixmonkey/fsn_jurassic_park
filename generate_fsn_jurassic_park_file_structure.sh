@@ -8,18 +8,22 @@ genfile() {
 # Usage: genfiles "schedule" 24 3200
 #   creates schedule.0 through schedule.24 at 3200 bytes each
 genfiles() {
-  for ((n=0;n<$2+1;n++)); do
-    genfile "$1.$n" $3
-  done
+   n=0
+   while [ $n -le $2 ]; do
+     genfile "$1.$n" $3
+     n=$((n+1))
+   done
 }
 
 # Usage: gentext "schedule.0"
 #   creates a text file with only the letter "a" in it
 gentext() {
-  for ((n=0;n<$2+1;n++)); do
-    echo "generating $1.$n"
-    echo "a" > "$1.$n"
-  done
+   n=0
+   while [ $n -le $2 ]; do
+     echo "generating $1.$n"
+     echo "a" > "$1.$n"
+     n=$((n+1))
+   done
 }
 
 # Usage: makegreen "schedule.0"
@@ -28,15 +32,15 @@ makegreen() {
   curyear=$(date '+%Y')
   curmonth=$(date '+%m')
   newmonth=$(echo "$curmonth - 3" | bc -l)
-  if [[ $newmonth < 1 ]]; then
+  if [ $newmonth -lt 1 ]; then
     newmonth=$(echo "$newmonth + 12" | bc -l)
     curyear=$(echo "$curyear - 1" | bc -l)
   fi
-  if [[ $newmonth < 10 ]]; then
+  if [ $newmonth -lt 10 ]; then
     newmonth="0$newmonth"
   fi
   curday=$(date '+%d')
-  if [[ $curday > 28 ]]; then
+  if [ $curday -gt 28 ]; then
     curday="28"
   fi
   newdate=$(date "+$curyear$newmonth$curday%H%M.%S")

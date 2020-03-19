@@ -13,9 +13,7 @@ And here's a recreation from my own O2:
 
 ## Setting up the directory and file structure
 
-From any `bash` shell, run `./generate_fsn_jurassic_park_file_structure.sh`.
-
-I know not all Irix machines have `bash` installed. Making this portable should be fairly easy, but I've already spent too much time on this, and need to give it a rest, at least for now.
+From a shell, run `ksh generate_fsn_jurassic_park_file_structure.sh`.
 
 ## Customizing FSN to have similar colors and settings to the movie
 
